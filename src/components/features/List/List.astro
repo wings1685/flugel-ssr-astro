@@ -1,0 +1,28 @@
+---
+import type { TaskItem } from "@/server/db/types.ts";
+
+type Props = {
+	data: TaskItem[];
+};
+const { data }: Props = Astro.props;
+const tasks = data ?? [];
+---
+<div>
+	<h1>List</h1>
+	<ul>
+		{tasks.map(task => (
+			<li>
+				<fieldset>
+					<form action="post" method={ `/api/tasks/update/${task.id}` }>
+						<input type="text" name="title" value={ task.title } />
+						<input type="text" name="text" value={ task.text } />
+						<button>Edit</button>
+					</form>
+					<form action="post" method={ `/api/tasks/delete/${task.id}` }>
+						<button>Delete</button>
+					</form>
+				</fieldset>
+			</li>
+		))}
+	</ul>
+</div>

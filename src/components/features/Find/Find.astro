@@ -1,0 +1,26 @@
+---
+import type { FindSchema } from "@/_global/lib/validate.ts";
+
+type Props = {
+	title?: string;
+	sort: FindSchema['sort'];
+};
+const { title = '', sort }: Props = Astro.props;
+---
+<div>
+	<h1>Find</h1>
+	<form id="find_form">
+		<fieldset>
+			<input type="text" name="title" value={ title } />
+			<label>
+				<input type="radio" name="sort" value="asc" checked={ sort === 'asc' } />
+				<span>ASC</span>
+			</label>
+			<label>
+				<input type="radio" name="sort" value="desc" checked={ sort === 'desc' } />
+				<span>DESC</span>
+			</label>
+			<button>Find</button>
+		</fieldset>
+	</form>
+</div>
