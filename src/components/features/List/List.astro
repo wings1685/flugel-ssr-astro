@@ -12,16 +12,8 @@ const tasks = data ?? [];
 	<ul>
 		{tasks.map(task => (
 			<li>
-				<fieldset>
-					<form action="post" method={ `/api/tasks/update/${task.id}` }>
-						<input type="text" name="title" value={ task.title } />
-						<input type="text" name="text" value={ task.text } />
-						<button>Edit</button>
-					</form>
-					<form action="post" method={ `/api/tasks/delete/${task.id}` }>
-						<button>Delete</button>
-					</form>
-				</fieldset>
+				<p>title: { task.title }</p>
+				<p>text: { task.text }</p>
 			</li>
 		))}
 	</ul>
