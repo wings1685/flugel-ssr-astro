@@ -1,11 +1,11 @@
 ---
+import type { DeepGuard } from "@/_global/lib/types";
 import type { TaskItem } from "@/server/db/types.ts";
 
 type Props = {
-	data: TaskItem[];
+	tasks: TaskItem[];
 };
-const { data }: Props = Astro.props;
-const tasks = data ?? [];
+const { tasks = [] }: DeepGuard<Props> = Astro.props;
 ---
 <div>
 	<h1>List</h1>

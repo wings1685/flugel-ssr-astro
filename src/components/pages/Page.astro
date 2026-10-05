@@ -17,6 +17,6 @@ const data = await apiFetch<TaskItem[]>('/tasks', query);
 <Layout>
 	<main>
 		<Find { ...query } />
-		<List data={ data } />
+		<List tasks={ data } />
 	</main>
 </Layout>

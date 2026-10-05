@@ -1,7 +1,11 @@
 import type { TaskItem } from "@/server/db/types.ts";
 
+export type DeepGuard<T> = {
+	readonly [K in keyof T]: T[K] extends object
+		? DeepGuard<T[K]>
+		: T[K];
+};
+
 export type PageProps = {
-	data: {
-		tasks: TaskItem[];
-	};
+	tasks: TaskItem[];
 };

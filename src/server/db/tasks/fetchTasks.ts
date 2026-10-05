@@ -3,6 +3,7 @@ import { db } from "../index.ts";
 import { task, taskDetail } from "../schema.ts";
 import { defaultFindValues, findSchema, validateParse } from "@/_global/lib/validate.ts";
 import type { FindSchema } from "@/_global/lib/validate.ts";
+import type { DeepGuard } from "@/_global/lib/types.ts";
 
 export const buildFindQuery = (url: URL) => {
 	const params = url.searchParams;
@@ -16,7 +17,7 @@ export const buildFindQuery = (url: URL) => {
 	return findQuery;
 };
 
-export const fetchTasks = async (findQuery: FindSchema) => {
+export const fetchTasks = async (findQuery: DeepGuard<FindSchema>) => {
 	const query = db
 		.select({
 			id: task.id,
