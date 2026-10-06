@@ -1,8 +1,8 @@
 ---
-import type { TaskItem } from "@/server/db/types.ts";
+import type { TaskSchema } from "@/_global/lib/validate";
 
 type Props = {
-	tasks: TaskItem[];
+	tasks: TaskSchema[];
 };
 const { tasks = [] }: Props = Astro.props;
 ---
