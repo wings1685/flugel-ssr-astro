@@ -1,10 +1,6 @@
 ---
-import type { FindSchema } from "@/_global/lib/validate.ts";
+import type { FindSchema as Props } from "@/_global/lib/validate.ts";
 
-type Props = {
-	title?: string;
-	sort: FindSchema['sort'];
-};
 const { title = '', sort }: Props = Astro.props;
 ---
 <div>
