@@ -1,9 +1,8 @@
 ---
 import Layout from "./Layout.astro";
-import { apiFetch } from "@/_global/lib/api";
+import { fetchTasks } from "@/server/db/tasks/fetchTasks";
 import { defaultFindValues } from "@/_global/lib/validate";
 import { Find, List } from "@/components/features/index.ts";
-import type { TaskItem } from "@/server/db/types.ts";
 import type { FindSchema } from "@/_global/lib/validate.ts";
 import "@/_global/styles/global.sass";
 
@@ -12,7 +11,7 @@ const query = {
 	title: params.get('title') ?? defaultFindValues.title,
 	sort: params.get('sort') ?? defaultFindValues.sort,
 } as FindSchema;
-const data = await apiFetch<TaskItem[]>('/tasks', query);
+const data = await fetchTasks(query);
 ---
 <Layout>
 	<main>
