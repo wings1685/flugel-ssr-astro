@@ -1,5 +1,5 @@
 import * as v from "valibot";
-import type { TaskData } from "@/server/db/types.ts";
+import type { TaskDrizzleSchema, TaskDetailDrizzleSchema } from "@/server/db/types";
 
 export const validateParse = <T>(schema: v.GenericSchema<T>, data: T) => {
 	v.parse(schema, data);
@@ -16,18 +16,20 @@ export const validateSafeParse = <T>(schema: v.GenericSchema<T>, data: T) => {
 	};
 };
 
+type UpdateTask = Omit<TaskDrizzleSchema, 'updated_at'>;
+type UpdateTaskDetail = Omit<TaskDetailDrizzleSchema, 'id' | 'task_id'>;
+type UpdateTaskForm = UpdateTask & UpdateTaskDetail;
+
 export const taskSchema = v.object({
 	id: v.pipe(v.number()),
 	title: v.pipe(v.string(), v.nonEmpty()),
 	text: v.pipe(v.string(), v.nonEmpty()),
-	updated_at: v.nullable(v.date()),
-}) satisfies v.GenericSchema<TaskData>;
+}) satisfies v.GenericSchema<UpdateTaskForm>;
 export type TaskSchema = v.InferInput<typeof taskSchema>;
 export const defaultTaskValues: TaskSchema = {
 	id: 0,
 	title: '',
 	text: '',
-	updated_at: null,
 };
 
 export const findSchema = v.object({
@@ -40,8 +42,8 @@ export const defaultFindValues: FindSchema = {
 	sort: 'desc',
 };
 
-const omitToCreateTask = ['id', 'updated_at'] as const;
-type CreateTaskFormData = Omit<TaskData, (typeof omitToCreateTask)[number]>;
+const omitToCreateTask = ['id'] as const;
+type CreateTaskFormData = Omit<UpdateTask, (typeof omitToCreateTask)[number]>;
 export const createTaskSchema = v.omit(taskSchema, omitToCreateTask) satisfies v.GenericSchema<CreateTaskFormData>;
 export type CreateTaskSchema = v.InferInput<typeof createTaskSchema>;
 export const defaultCreateTaskValues: CreateTaskSchema = {
@@ -49,18 +51,9 @@ export const defaultCreateTaskValues: CreateTaskSchema = {
 	text: '',
 };
 
-const omitToUpdateTask = ['updated_at'] as const;
-type UpdateTaskFormData = Omit<TaskData, (typeof omitToUpdateTask)[number]>;
-export const updateTaskSchema = v.omit(taskSchema, omitToUpdateTask) satisfies v.GenericSchema<UpdateTaskFormData>;
-export type UpdateTaskSchema = v.InferInput<typeof updateTaskSchema>;
-export const defaultUpdateTaskValues: UpdateTaskSchema = {
-	id: 0,
-	title: '',
-	text: '',
-};
-
-type DeleteTaskFormData = Pick<TaskData, 'id'>;
-export const deleteTaskSchema = v.pick(taskSchema, ['id']) satisfies v.GenericSchema<DeleteTaskFormData>;
+const pickToDeleteTask = ['id'] as const;
+type DeleteTaskFormData = Pick<TaskDrizzleSchema, (typeof pickToDeleteTask)[number]>;
+export const deleteTaskSchema = v.pick(taskSchema, pickToDeleteTask) satisfies v.GenericSchema<DeleteTaskFormData>;
 export type DeleteTaskSchema = v.InferInput<typeof deleteTaskSchema>;
 export const defaultDeleteTaskValues: DeleteTaskSchema = {
 	id: 0,
