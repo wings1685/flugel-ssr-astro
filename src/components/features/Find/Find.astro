@@ -1,12 +1,11 @@
 ---
-import type { DeepGuard } from "@/_global/lib/types";
 import type { FindSchema } from "@/_global/lib/validate.ts";
 
 type Props = {
 	title?: string;
 	sort: FindSchema['sort'];
 };
-const { title = '', sort }: DeepGuard<Props> = Astro.props;
+const { title = '', sort }: Props = Astro.props;
 ---
 <div>
 	<h1>Find</h1>
