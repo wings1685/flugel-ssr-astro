@@ -1,46 +1,22 @@
-# Astro Starter Kit: Basics
+# SSR Experiments Astro Version
 
-```sh
-npm create astro@latest -- --template basics
-```
+Astro SSR での挙動を見るためだけの実験場です。
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+**Note:** 本リポジトリは、実験場という性質であるため Issues 及び Pull Requests は受け付けておりません。
 
-## 🚀 Project Structure
+## Tech Stack
 
-Inside of your Astro project, you'll see the following folders and files:
+- Astro 7.3.5
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+- Drizzle ORM 0.45.3
+- Drizzle Kit 0.31.11
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Experiments
 
-## 🧞 Commands
+この実験場では以下を行いました。
 
-All commands are run from the root of the project, from a terminal:
+- Astro + Drizzle での READ 処理
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Related Articles
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- [各 JS フレームワークのみでの DB 連携探訪記](https://wings.hatenablog.com/entry/withoutLaravelFestival)
