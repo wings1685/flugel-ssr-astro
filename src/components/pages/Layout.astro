@@ -1,3 +1,7 @@
+---
+import Header from "./_parts/Header.astro";
+import "@/_global/styles/global.sass";
+---
 <!doctype html>
 <html lang="ja">
 	<head>
@@ -7,6 +11,9 @@
 		<meta name="generator" content={ Astro.generator } />
 	</head>
 	<body>
-		<slot />
+		<main>
+			<Header />
+			<slot />
+		</main>
 	</body>
 </html>

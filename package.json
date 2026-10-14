@@ -8,7 +8,8 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "astro build && astro preview",
+    "preview:ssg": "VITE_BUILD_MODE=ssg astro build && VITE_BUILD_MODE=ssg astro preview",
     "astro": "astro"
   },
   "dependencies": {

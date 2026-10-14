@@ -2,14 +2,11 @@
 import Layout from "./Layout.astro";
 import { buildFindQuery, fetchTasks } from "@/server/db/tasks/fetchTasks";
 import { Find, List } from "@/components/features/index.ts";
-import "@/_global/styles/global.sass";
 
 const findQuery = buildFindQuery(Astro.url.search);
 const tasks = await fetchTasks(findQuery);
 ---
 <Layout>
-	<main>
-		<Find { ...findQuery } />
-		<List tasks={ tasks } />
-	</main>
+	<Find { ...findQuery } />
+	<List tasks={ tasks } />
 </Layout>
