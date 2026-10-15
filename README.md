@@ -16,7 +16,9 @@ Astro SSR での挙動を見るためだけの実験場です。
 この実験場では以下を行いました。
 
 - Astro + Drizzle での READ 処理
+- SSR / SSG のレスポンス時間計測
 
 ## Related Articles
 
 - [各 JS フレームワークのみでの DB 連携探訪記](https://wings.hatenablog.com/entry/withoutLaravelFestival)
+- [各フレームワークでの SSR / SSG のレスポンス時間計測祭](https://wings.hatenablog.com/entry/responseTimeFestival)
